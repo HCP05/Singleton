@@ -1,32 +1,32 @@
 #example
-# class Singleton:
-#    __instance = None
-#
-#    @staticmethod
-#    def getInstance():
-#       """ Static access method. """
-#       if Singleton.__instance == None:
-#          Singleton()
-#       return Singleton.__instance
-#    def __init__(self):
-#       """ Virtually private constructor. """
-#       if Singleton.__instance != None:
-#          raise Exception("This class is a singleton!")
-#       else:
-#          Singleton.__instance = self
-#
-#    # def createSecondInstance(self):
-#
+class Singleton:
+   __instance = None
 
-# #Se pot instantia 2
-# a=Singleton()
-# print(a._Singleton__instance)
+   @staticmethod
+   def getInstance():
+      """ Static access method. """
+      if Singleton.__instance == None:
+         Singleton()
+      return Singleton.__instance
+   def __init__(self):
+      """ Virtually private constructor. """
+      if Singleton.__instance != None:
+         raise Exception("This class is a singleton!")
+      else:
+         Singleton.__instance = self
+
+
+#Se pot instantia 2
+a=Singleton()
+print(a._Singleton__instance)
 # Singleton._Singleton__instance=None
-# a1=Singleton()
-# print(a1._Singleton__instance)
-# print(a._Singleton__instance)
-# print(a1._Singleton__instance)
-#
+a1=Singleton.getInstance()
+print(a1._Singleton__instance)
+Singleton._Singleton__instance=None
+b=Singleton()
+
+print(b._Singleton__instance,"daw")
+
 
 
 
@@ -70,6 +70,7 @@ if __name__ == "__main__":
    # The client code.
 
    s1 = Singleton()
+   SingletonMeta._instances.pop(s1.__class__)
    s2 = Singleton()
 
    serv1=Service()
